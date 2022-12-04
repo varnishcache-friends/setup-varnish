@@ -9,6 +9,12 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Unsupported platform
+      if: runner.os == 'Windows'
+      shell: bash
+      run: |
+        echo "unsupported platform"
+        exit 1
     - name: Install dependencies
       if: runner.os == 'Linux'
       shell: bash
@@ -26,7 +32,7 @@ runs:
         brew install \
           docutils \
           sphinx-doc
-    - name: Determine ref
+    - name: Determine refname
       id: refs
       shell: bash
       run: |
@@ -47,3 +53,18 @@ runs:
         make
         sudo make install
         sudo ldconfig
+    - name: Cleanup
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        sudo apt-get purge -y \
+          libedit-dev \
+          python3-docutils \
+          python3-sphinx
+    - name: Cleanup
+      if: runner.os == 'macOS'
+      shell: bash
+      run: |
+        brew uninstall \
+          docutils \
+          sphinx-doc
