@@ -32,6 +32,7 @@ runs:
         brew install \
           automake \
           docutils \
+          pcre \
           sphinx-doc
         echo "/usr/local/opt/sphinx-doc/bin" >> $GITHUB_PATH
     - name: Determine refname
@@ -70,4 +71,5 @@ runs:
         brew uninstall \
           automake \
           docutils \
+          pcre \
           sphinx-doc
