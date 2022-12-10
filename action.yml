@@ -33,6 +33,7 @@ runs:
           automake \
           docutils \
           sphinx-doc
+        echo "/usr/local/opt/sphinx-doc/bin" >> $GITHUB_PATH
     - name: Determine refname
       id: refs
       shell: bash
