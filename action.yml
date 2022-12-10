@@ -30,6 +30,7 @@ runs:
       run: |
         brew update
         brew install \
+          automake \
           docutils \
           sphinx-doc
     - name: Determine refname
@@ -66,5 +67,6 @@ runs:
       shell: bash
       run: |
         brew uninstall \
+          automake \
           docutils \
           sphinx-doc
