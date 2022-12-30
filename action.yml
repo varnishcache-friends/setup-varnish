@@ -55,6 +55,10 @@ runs:
         ./configure
         make
         sudo make install
+    - name: Run ldconfig
+      if: runner.os == 'Linux'
+      shell: bash
+      run: sudo ldconfig
     - name: Cleanup
       if: runner.os == 'Linux'
       shell: bash
