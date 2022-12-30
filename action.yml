@@ -28,7 +28,6 @@ runs:
       if: runner.os == 'macOS'
       shell: bash
       run: |
-        brew update
         brew install \
           automake \
           docutils \
@@ -74,5 +73,4 @@ runs:
         brew uninstall \
           automake \
           docutils \
-          pcre \
           sphinx-doc
