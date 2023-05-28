@@ -5,7 +5,9 @@ inputs:
   version:
     description: "Varnish HTTP Cache version to use"
     required: true
-    default: "master"
+  jobs:
+    description: "Number of jobs (commands) to run simultaneously"
+    default: 1
 runs:
   using: composite
   steps:
@@ -52,7 +54,7 @@ runs:
       run: |
         ./autogen.sh
         ./configure
-        make
+        make -j${{ inputs.jobs }}
         sudo make install
     - name: Run ldconfig
       if: runner.os == 'Linux'
