@@ -7,7 +7,7 @@ inputs:
     required: true
   jobs:
     description: "Number of jobs (commands) to run simultaneously"
-    default: 1
+    default: 4
 runs:
   using: composite
   steps:
