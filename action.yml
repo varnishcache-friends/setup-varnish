@@ -62,7 +62,7 @@ runs:
       run: sudo ldconfig
     - name: Display version and revision built
       shell: bash
-      run: /usr/local/bin/varnishd -V
+      run: /usr/local/sbin/varnishd -V
     - name: Cleanup
       if: runner.os == 'Linux'
       shell: bash
