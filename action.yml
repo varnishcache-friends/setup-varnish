@@ -4,8 +4,8 @@ author: "varnishcache-friends"
 inputs:
   version:
     description: "Varnish HTTP Cache version to use"
-    required: true
-  jobs:
+    default: "master"
+  make-jobs:
     description: "Number of jobs (commands) to run simultaneously"
     default: 4
 runs:
@@ -53,13 +53,16 @@ runs:
       shell: bash
       run: |
         ./autogen.sh
-        ./configure
-        make -j${{ inputs.jobs }}
+        ./configure --localstatedir=/var/lib
+        make -j${{ inputs.make-jobs }}
         sudo make install
     - name: Run ldconfig
       if: runner.os == 'Linux'
       shell: bash
       run: sudo ldconfig
+    - name: Display version and revision built
+      shell: bash
+      run: /usr/local/bin/varnishd -V
     - name: Cleanup
       if: runner.os == 'Linux'
       shell: bash
