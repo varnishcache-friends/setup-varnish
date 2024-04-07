@@ -45,7 +45,7 @@ runs:
           refname="varnish-$refname"
         fi
         echo "REFNAME=$refname" >> $GITHUB_OUTPUT
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         repository: "varnishcache/varnish-cache"
         ref: ${{ steps.refs.outputs.REFNAME }}
